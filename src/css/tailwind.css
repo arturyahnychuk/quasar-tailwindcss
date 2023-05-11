@@ -1,0 +1,23 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        font-family: "Open Sans", sans-serif;
+    }
+    * {
+        @apply tw-scrollbar-thin tw-scrollbar-thumb-gray-800/30 tw-scrollbar-track-transparent tw-scrollbar-thumb-rounded-xl;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply tw-leading-normal;
+    }
+}
