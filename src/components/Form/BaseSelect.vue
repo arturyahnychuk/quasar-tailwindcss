@@ -11,7 +11,7 @@
         >
         <div class="tw-w-full">
             <q-select
-                outlined
+                filled
                 :use-input="search"
                 :dense="dense"
                 color="primary"
@@ -46,42 +46,52 @@
         </div>
     </div>
 </template>
-<script setup>
+<script>
 import { ref } from "vue";
-const props = defineProps({
-    label: String,
-    search: Boolean,
-    options: Array,
-    modelValue: String,
-    disabled: Boolean,
-    required: Boolean,
-    align: String,
-    dense: Boolean,
-    mark: Boolean,
-    mapOptions: Boolean,
-    emitValue: Boolean,
-    multiple: Boolean,
-    clearable: Boolean,
-    displayValue: String,
-    optionValue: String,
-    optionsCover: Boolean,
-});
-defineEmits(["update:modelValue"]);
-const valOptions = ref();
-const filterFn = (val, update) => {
-    if (val === "") {
-        update(() => {
-            valOptions.value = props.options;
-        });
-        return;
-    }
-    update(() => {
-        const needle = val.toLowerCase();
-        valOptions.value = props.options.filter((v) => {
-            return v?.label
-                ? v.label.toLowerCase().indexOf(needle) > -1
-                : v.toLowerCase().indexOf(needle) > -1;
-        });
-    });
+
+export default {
+    props: [
+        "label",
+        "search",
+        "options",
+        "modelValue",
+        "disabled",
+        "required",
+        "align",
+        "dense",
+        "mark",
+        "mapOptions",
+        "emitValue",
+        "multiple",
+        "clearable",
+        "displayValue",
+        "optionValue",
+        "optionsCover",
+    ],
+    emits: ["update:modelValue"],
+    data() {
+        const valOptions = ref(this.options);
+
+        return {
+            valOptions,
+        };
+    },
+    methods: {
+        filterFn(val, update) {
+            if (val === "") {
+                update(() => {
+                    this.valOptions = this.options;
+                });
+                return;
+            }
+
+            update(() => {
+                const needle = val.toLowerCase();
+                this.valOptions = this.options.filter(
+                    (v) => v.label.toLowerCase().indexOf(needle) > -1
+                );
+            });
+        },
+    },
 };
 </script>
