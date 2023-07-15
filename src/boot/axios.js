@@ -22,21 +22,21 @@ api.interceptors.request.use((config) => {
     return config;
 });
 
-api.interceptors.response.use(
-    (response) => response,
-    (error) => {
-        if (error.response.status == 401) {
-            // 401 Unauthorized
-            // Do Something..
-        } else if (error.response.status == 400) {
-            // 400 Bad Request
-            // Do Something..
-        } else if (error.response.status == 500) {
-            // 500 Internal Server Error
-            // Do Something..
-        }
-    }
-);
+// api.interceptors.response.use(
+//     (response) => response,
+//     (error) => {
+//         if (error.response.status == 401) {
+//             // 401 Unauthorized
+//             // Do Something..
+//         } else if (error.response.status == 400) {
+//             // 400 Bad Request
+//             // Do Something..
+//         } else if (error.response.status == 500) {
+//             // 500 Internal Server Error
+//             // Do Something..
+//         }
+//     }
+// );
 
 export default boot(({ app }) => {
     // for use inside Vue files (Options API) through this.$axios and this.$api
