@@ -3,8 +3,6 @@
         <h1 class="tw-text-lg tw-font-semibold">
             Quasar + Tailwindcss + Vueuse
         </h1>
-
-        <BaseFile v-model="File" />
     </q-page>
 </template>
 
